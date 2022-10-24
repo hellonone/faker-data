@@ -1,6 +1,5 @@
 package com.fd.fakerdata.tool;
 
-import com.fd.fakerdata.local.Local;
 import com.fd.fakerdata.model.Address;
 import com.fd.fakerdata.model.Name;
 import com.fd.fakerdata.model.PhoneNumber;

@@ -1,4 +1,4 @@
-package com.fd.fakerdata.local;
+package com.fd.fakerdata.tool;
 
 /**
  * @ClassName Local
