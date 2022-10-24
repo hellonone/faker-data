@@ -2,6 +2,7 @@ package com.fd.fakerdata.util;
 
 import org.yaml.snakeyaml.Yaml;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
@@ -16,9 +17,22 @@ import java.util.Map;
 public class YamlUtil {
     public static Map<String, List<String>> getYamlMap(String fileName) {
         Yaml yaml = new Yaml();
-        InputStream in = YamlUtil.class
-                .getClassLoader()
-                .getResourceAsStream(fileName);
-        return yaml.load(in);
+        InputStream in = null;
+        try {
+            in = YamlUtil.class
+                    .getClassLoader()
+                    .getResourceAsStream(fileName);
+            return yaml.load(in);
+        } catch (Exception e) {
+            throw new RuntimeException("没有发现这个" + fileName + "文件");
+        } finally {
+            try {
+                if (in != null) {
+                    in.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

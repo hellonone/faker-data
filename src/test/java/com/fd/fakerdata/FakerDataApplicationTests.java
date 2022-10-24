@@ -1,6 +1,7 @@
 package com.fd.fakerdata;
 
 import com.fd.fakerdata.local.Local;
+import com.fd.fakerdata.model.Address;
 import com.fd.fakerdata.model.Name;
 import com.fd.fakerdata.model.PhoneNumber;
 import com.fd.fakerdata.tool.Faker;
@@ -26,6 +27,9 @@ class FakerDataApplicationTests {
         PhoneNumber phoneNumber = faker.phoneNumber();
         System.out.println(phoneNumber.getCellPhoneNumber());
         System.out.println(phoneNumber.getPhoneNumber());
+
+        Address address = faker.address();
+        address.getProvince();
     }
 
     @Test
