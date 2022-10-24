@@ -15,7 +15,7 @@ import java.util.Map;
  * @Version 1.0
  */
 public class YamlUtil {
-    public static Map<String, List<String>> getYamlMap(String fileName) {
+    public static Map<String, List<Object>> getYamlMap(String fileName) {
         Yaml yaml = new Yaml();
         InputStream in = null;
         try {

@@ -1,8 +1,11 @@
 package com.fd.fakerdata.model;
 
 import com.fd.fakerdata.tool.Faker;
+import com.fd.fakerdata.util.ConvertUtil;
+import com.fd.fakerdata.util.RandomUtil;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName Address
@@ -17,8 +20,15 @@ public class Address extends BaseModel {
     }
 
     public String getProvince() {
-        List<String> province = map.get("province");
-        System.out.println(province);
+        List<Object> provinces = map.get("province");
+        Object valueFromList = RandomUtil.getValueFromList(provinces);
+        Map<String, String> province = ConvertUtil.castMap(valueFromList, String.class, String.class);
+        return province.get("name");
+    }
+
+    public String getCity() {
+        List<Object> cities = map.get("city");
+        System.out.println(cities.get(1));
         return "";
     }
 

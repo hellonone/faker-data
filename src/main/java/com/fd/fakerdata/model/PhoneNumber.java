@@ -20,13 +20,15 @@ public class PhoneNumber extends BaseModel {
     }
 
     public String getCellPhoneNumber() {
-        List<String> cellPhoneNumbers = map.get("cell_phone");
-        return numberIfy(RandomUtil.getValueFromList(cellPhoneNumbers));
+        List<Object> cellPhoneNumbers = map.get("cell_phone");
+        String cellPhoneNumber = (String) RandomUtil.getValueFromList(cellPhoneNumbers);
+        return numberIfy(cellPhoneNumber);
     }
 
     public String getPhoneNumber() {
-        List<String> phoneNumbers = map.get("phone_number");
-        return numberIfy(RandomUtil.getValueFromList(phoneNumbers));
+        List<Object> phoneNumbers = map.get("phone_number");
+        String phoneNumber = (String) RandomUtil.getValueFromList(phoneNumbers);
+        return numberIfy(phoneNumber);
     }
 
     public String numberIfy(String reg) {

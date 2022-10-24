@@ -18,8 +18,10 @@ public class Name extends BaseModel {
     }
 
     public String getName() {
-        List<String> lastNames = map.get("last_name");
-        List<String> firstNames = map.get("first_name");
-        return RandomUtil.getValueFromList(lastNames) + RandomUtil.getValueFromList(firstNames);
+        List<Object> lastNames = map.get("last_name");
+        List<Object> firstNames = map.get("first_name");
+        String lastName = (String) RandomUtil.getValueFromList(lastNames);
+        String firstName = (String) RandomUtil.getValueFromList(firstNames);
+        return lastName + firstName;
     }
 }

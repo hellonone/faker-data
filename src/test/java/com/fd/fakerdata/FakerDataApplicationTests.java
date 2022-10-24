@@ -1,10 +1,10 @@
 package com.fd.fakerdata;
 
-import com.fd.fakerdata.tool.Local;
 import com.fd.fakerdata.model.Address;
 import com.fd.fakerdata.model.Name;
 import com.fd.fakerdata.model.PhoneNumber;
 import com.fd.fakerdata.tool.Faker;
+import com.fd.fakerdata.tool.Local;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -29,7 +29,8 @@ class FakerDataApplicationTests {
         System.out.println(phoneNumber.getPhoneNumber());
 
         Address address = faker.address();
-        address.getProvince();
+        System.out.println(address.getProvince());
+        address.getCity();
     }
 
     @Test

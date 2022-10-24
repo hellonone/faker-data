@@ -16,7 +16,7 @@ import java.util.Map;
 public class BaseModel {
     protected final Faker faker;
     protected String fileName;
-    protected Map<String, List<String>> map;
+    protected Map<String, List<Object>> map;
 
     public BaseModel(Faker faker) {
         this.faker = faker;
