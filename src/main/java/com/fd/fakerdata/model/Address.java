@@ -24,43 +24,61 @@ public class Address extends BaseModel {
         return getProvince(AddressEnum.Name);
     }
 
+
     public String getProvince(AddressEnum addressEnum) {
-        List<Object> provinces = ConvertUtil.castList(map.get("province"), Object.class);
-        return getValueSingle(addressEnum, provinces);
+        return getProvinceMap().get(addressEnum.getValue());
     }
 
-    public String getCity(String provinceCode, AddressEnum addressEnum) {
+    private Map<String, String> getProvinceMap() {
+        List<Object> provinces = ConvertUtil.castList(map.get("province"), Object.class);
+        return getMap(provinces);
+    }
+
+    private Map<String, String> getMap(List<Object> areas) {
+        Object randomItem = RandomUtil.getValueFromList(areas);
+        return ConvertUtil.castMap(randomItem, String.class, String.class);
+    }
+
+    private Map<String, String> getCityMap(String provinceCode) {
         if (provinceCode == null) {
             provinceCode = getProvince(AddressEnum.Code);
         }
+        Object cityObj = map.get("city");
+        List<Object> cities = ConvertUtil.castList(
+                ConvertUtil.castMap(cityObj, String.class, List.class).get(provinceCode), Object.class);
+
+        return getMap(cities);
+    }
+
+    public String getCity(String provinceCode, AddressEnum addressEnum) {
         if (addressEnum == null) {
             addressEnum = AddressEnum.Name;
         }
-        List<Object> cities = ConvertUtil.castList(ConvertUtil.castMap(map.get("city"), String.class, List.class).get(provinceCode), Object.class);
-        return getValueSingle(addressEnum, cities);
+        return getCityMap(provinceCode).get(addressEnum.getValue());
     }
 
     public String getCity() {
         return getCity(null, null);
     }
 
-    public String getCity(String cityCode) {
-        return getCity(cityCode, null);
-    }
-
     public String getCity(AddressEnum addressEnum) {
         return getCity(null, addressEnum);
     }
 
-    public String getCounty(String cityCode, AddressEnum addressEnum) {
+    private Map<String, String> getCountyMap(String cityCode) {
         if (cityCode == null) {
             cityCode = getCity(AddressEnum.Code);
         }
+        List<Object> counties = ConvertUtil.castList(ConvertUtil.castMap(map.get("county")
+                , String.class, List.class).get(cityCode), Object.class);
+        return getMap(counties);
+    }
+
+    public String getCounty(String cityCode, AddressEnum addressEnum) {
         if (addressEnum == null) {
             addressEnum = AddressEnum.Name;
         }
-        List<Object> counties = ConvertUtil.castList(ConvertUtil.castMap(map.get("county"), String.class, List.class).get(cityCode), Object.class);
-        return getValueSingle(addressEnum, counties);
+        return getCountyMap(cityCode).get(addressEnum.getValue());
     }
 
     public String getCounty() {
@@ -68,18 +86,11 @@ public class Address extends BaseModel {
     }
 
     public String getFullAddress() {
-        return "";
-    }
-
-    private String getValueSingle(AddressEnum addressEnum, List<Object> counties) {
-        Object valueFromList = RandomUtil.getValueFromList(counties);
-        Map<String, String> city = ConvertUtil.castMap(valueFromList, String.class, String.class);
-        switch (addressEnum) {
-            case Code:
-                return city.get("id");
-            case Name:
-            default:
-                return city.get("name");
-        }
+        Map<String, String> provinceMap = getProvinceMap();
+        Map<String, String> cityMap = getCityMap(provinceMap.get(AddressEnum.Code.getValue()));
+        Map<String, String> countyMap = getCountyMap(cityMap.get(AddressEnum.Code.getValue()));
+        return provinceMap.get(AddressEnum.Name.getValue())
+                + cityMap.get(AddressEnum.Name.getValue())
+                + countyMap.get(AddressEnum.Name.getValue());
     }
 }
