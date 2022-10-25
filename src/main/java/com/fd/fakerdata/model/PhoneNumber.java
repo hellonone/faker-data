@@ -3,6 +3,7 @@ package com.fd.fakerdata.model;
 import com.fd.fakerdata.rereg.model.Node;
 import com.fd.fakerdata.rereg.model.OrdinaryNode;
 import com.fd.fakerdata.tool.Faker;
+import com.fd.fakerdata.util.ConvertUtil;
 import com.fd.fakerdata.util.RandomUtil;
 
 import java.util.List;
@@ -20,13 +21,13 @@ public class PhoneNumber extends BaseModel {
     }
 
     public String getCellPhoneNumber() {
-        List<Object> cellPhoneNumbers = map.get("cell_phone");
-        String cellPhoneNumber = (String) RandomUtil.getValueFromList(cellPhoneNumbers);
+        List<String> cellPhoneNumbers = ConvertUtil.castList(map.get("cell_phone"), String.class);
+        String cellPhoneNumber = RandomUtil.getValueFromList(cellPhoneNumbers);
         return numberIfy(cellPhoneNumber);
     }
 
     public String getPhoneNumber() {
-        List<Object> phoneNumbers = map.get("phone_number");
+        List<String> phoneNumbers = ConvertUtil.castList(map.get("phone_number"), String.class);
         String phoneNumber = (String) RandomUtil.getValueFromList(phoneNumbers);
         return numberIfy(phoneNumber);
     }

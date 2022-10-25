@@ -13,7 +13,7 @@ import java.util.Random;
 public class RandomUtil {
     public static Random random = new Random();
 
-    public static Object getValueFromList(List<Object> list) {
+    public static <T> T getValueFromList(List<T> list) {
         int index = random.nextInt(list.size());
         return list.get(index);
     }

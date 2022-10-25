@@ -4,7 +4,6 @@ import org.yaml.snakeyaml.Yaml;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,13 +14,14 @@ import java.util.Map;
  * @Version 1.0
  */
 public class YamlUtil {
-    public static Map<String, List<Object>> getYamlMap(String fileName) {
+    public static Map<String, Object> getYamlMap(String fileName) {
         Yaml yaml = new Yaml();
         InputStream in = null;
         try {
             in = YamlUtil.class
                     .getClassLoader()
                     .getResourceAsStream(fileName);
+
             return yaml.load(in);
         } catch (Exception e) {
             throw new RuntimeException("没有发现这个" + fileName + "文件");

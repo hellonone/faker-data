@@ -1,6 +1,7 @@
 package com.fd.fakerdata.model;
 
 import com.fd.fakerdata.tool.Faker;
+import com.fd.fakerdata.util.ConvertUtil;
 import com.fd.fakerdata.util.RandomUtil;
 
 import java.util.List;
@@ -18,10 +19,10 @@ public class Name extends BaseModel {
     }
 
     public String getName() {
-        List<Object> lastNames = map.get("last_name");
-        List<Object> firstNames = map.get("first_name");
-        String lastName = (String) RandomUtil.getValueFromList(lastNames);
-        String firstName = (String) RandomUtil.getValueFromList(firstNames);
+        List<String> lastNames = ConvertUtil.castList(map.get("last_name"), String.class);
+        List<String> firstNames = ConvertUtil.castList(map.get("first_name"), String.class);
+        String lastName = RandomUtil.getValueFromList(lastNames);
+        String firstName = RandomUtil.getValueFromList(firstNames);
         return lastName + firstName;
     }
 }

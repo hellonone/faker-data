@@ -30,7 +30,9 @@ class FakerDataApplicationTests {
 
         Address address = faker.address();
         System.out.println(address.getProvince());
-        address.getCity();
+        System.out.println(address.getCity());
+
+        System.out.println(address.getCounty());
     }
 
     @Test

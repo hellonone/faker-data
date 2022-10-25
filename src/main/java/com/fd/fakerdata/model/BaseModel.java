@@ -3,7 +3,6 @@ package com.fd.fakerdata.model;
 import com.fd.fakerdata.tool.Faker;
 import com.fd.fakerdata.util.YamlUtil;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,7 +15,7 @@ import java.util.Map;
 public class BaseModel {
     protected final Faker faker;
     protected String fileName;
-    protected Map<String, List<Object>> map;
+    protected Map<String, Object> map;
 
     public BaseModel(Faker faker) {
         this.faker = faker;
