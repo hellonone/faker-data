@@ -28,7 +28,7 @@ public class PhoneNumber extends BaseModel {
 
     public String getPhoneNumber() {
         List<String> phoneNumbers = ConvertUtil.castList(map.get("phone_number"), String.class);
-        String phoneNumber = (String) RandomUtil.getValueFromList(phoneNumbers);
+        String phoneNumber = RandomUtil.getValueFromList(phoneNumbers);
         return numberIfy(phoneNumber);
     }
 

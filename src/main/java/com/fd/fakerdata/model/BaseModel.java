@@ -30,5 +30,4 @@ public class BaseModel {
         this.fileName = localPrefix + separator + simpleName + suffix;
         this.map = YamlUtil.getYamlMap(fileName);
     }
-
 }
