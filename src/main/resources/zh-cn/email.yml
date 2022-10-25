@@ -1,0 +1,8 @@
+suffix:
+  - qq.com
+  - 163.com
+  - outlook.com
+  - gmail.com
+  - 126.com
+prefix:
+  - '\w{6,12}'

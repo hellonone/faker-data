@@ -20,7 +20,7 @@ public class TestReReg {
     @Test
     public void generateReg() {
         try {
-            String expression = "(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\\d{8}";
+            String expression = "[\u4e00-\u9fa5]";
             Node node = new OrdinaryNode(expression);
             String random = node.random();
             System.out.println(random);

@@ -3,6 +3,7 @@ package com.fd.fakerdata.model;
 import com.fd.fakerdata.tool.Faker;
 import com.fd.fakerdata.util.ConvertUtil;
 import com.fd.fakerdata.util.RandomUtil;
+import com.fd.fakerdata.util.ReRegUtil;
 
 import java.util.List;
 
@@ -24,5 +25,17 @@ public class Name extends BaseModel {
         String lastName = RandomUtil.getValueFromList(lastNames);
         String firstName = RandomUtil.getValueFromList(firstNames);
         return lastName + firstName;
+    }
+
+    public String getUsername() {
+        List<String> usernames = ConvertUtil.castList(map.get("username"), String.class);
+        String usernameReg = RandomUtil.getValueFromList(usernames);
+        return ReRegUtil.getStringByReg(usernameReg);
+    }
+
+    public String getAge() {
+        List<String> ages = ConvertUtil.castList(map.get("age"), String.class);
+        String usernameReg = RandomUtil.getValueFromList(ages);
+        return ReRegUtil.getStringByReg(usernameReg);
     }
 }

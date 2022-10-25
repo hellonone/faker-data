@@ -1,6 +1,7 @@
 package com.fd.fakerdata;
 
 import com.fd.fakerdata.model.Address;
+import com.fd.fakerdata.model.Email;
 import com.fd.fakerdata.model.Name;
 import com.fd.fakerdata.model.PhoneNumber;
 import com.fd.fakerdata.tool.Faker;
@@ -13,6 +14,7 @@ import java.util.Map;
 
 @SpringBootTest
 class FakerDataApplicationTests {
+    private final Faker faker = new Faker(new Local("zh-cn"));
 
     @Test
     void contextLoads() {
@@ -20,7 +22,6 @@ class FakerDataApplicationTests {
 
     @Test
     public void testFaker1() {
-        Faker faker = new Faker(new Local("zh-cn"));
         Name name = faker.name();
         System.out.println(name.getName());
 
@@ -33,6 +34,17 @@ class FakerDataApplicationTests {
         System.out.println(address.getCity());
         System.out.println(address.getCounty());
         System.out.println(address.getFullAddress());
+    }
+
+    @Test
+    public void testEmail() {
+        Email email = faker.email();
+        System.out.println(email.getEmail());
+    }@Test
+    public void testName() {
+        Name name = faker.name();
+        System.out.println(name.getUsername());
+        System.out.println(name.getAge());
     }
 
     @Test

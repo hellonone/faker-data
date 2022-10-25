@@ -1,6 +1,7 @@
 package com.fd.fakerdata.tool;
 
 import com.fd.fakerdata.model.Address;
+import com.fd.fakerdata.model.Email;
 import com.fd.fakerdata.model.Name;
 import com.fd.fakerdata.model.PhoneNumber;
 
@@ -36,5 +37,9 @@ public class Faker {
 
     public Address address() {
         return new Address(this);
+    }
+
+    public Email email() {
+        return new Email(this);
     }
 }
